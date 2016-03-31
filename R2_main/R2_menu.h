@@ -9,6 +9,7 @@ extern int currentMainMenu=0;
 extern int currentSecondMenu=0;
 extern int eLast = 0;
 
+
 //Czyści LCD
 void clearLcd(){
   lcd.setCursor(0,0);

@@ -5,6 +5,7 @@ const int ePinA = 26;
 const int ePinB = 25;
 const int eClick = 24;
 
+File root;
 
 void pinsSetup(){
   pinMode (ePinA,INPUT);      //Tryby pinów
@@ -15,4 +16,12 @@ void pinsSetup(){
   digitalWrite(eClick, HIGH);
   Serial.begin (9600);
   lcd.begin(16, 2);          //16 znaków, 2 wiersze
+  Serial.print("Initializing SD card...");
+  pinMode(4, OUTPUT);
+  if (!SD.begin(4)) {
+    Serial.println("initialization failed!");
+    return;
+  }
+  Serial.println("initialization done.");
+  root = SD.open("/");
 }

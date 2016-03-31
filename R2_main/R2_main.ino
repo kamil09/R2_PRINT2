@@ -1,12 +1,18 @@
 #include <Wire.h>
 #include <LiquidCrystal.h>
+#include <SD.h>
+
 #include "R2_pins.h"
 #include "R2_menu.h"
+#include "R2_sd.h"
 
 int workCase=0;
 
 void setup() {
   pinsSetup();
+  mallocListFiles(20);
+  listFiles(root);
+  makeFilesCharList();
 }
 
 
@@ -25,7 +31,7 @@ void loop() {
     
     case 2:                    //Glowne MENU 
       if( printMenu(mainMenu, &currentMainMenu, numMainMenu) == 1){
-         Serial.print(currentMainMenu);
+         //Serial.print(currentMainMenu);
          clLcd=1;
          switch(currentMainMenu){
           case 0:
@@ -35,6 +41,7 @@ void loop() {
           break;
          
           case 2:
+            workCase=4;
           break;
          
           case 3:
@@ -52,6 +59,19 @@ void loop() {
            currentSecondMenu=0;
            workCase=2;
         }
+      }
+    break;
+    
+    case 4:
+      if( printMenu(filesNames, &curNumOfFiles, numOfFiles-1) == 1){
+        clLcd=1;
+        if(curNumOfFiles > 0){
+          mainFile = sdFileList[curNumOfFiles-1]; 
+          Serial.print(mainFile.name());
+        }
+        currentMainMenu=0;
+        currentSecondMenu=0;
+        workCase=2;
       }
     break;
   }
