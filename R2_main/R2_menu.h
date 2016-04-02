@@ -10,6 +10,7 @@ extern int currentSecondMenu=0;
 extern int eLast = 0;
 
 
+
 //Czyści LCD
 void clearLcd(){
   lcd.setCursor(0,0);
@@ -56,6 +57,34 @@ int lcdPrint02(){
       lcd.print("Witaj w menu");
       lcd.setCursor(0,1);
       lcd.print("Uzyj enkodera!");
+      delay(300);
+    }
+  if(encoder()>0) return 1;
+  return 0;
+}
+
+int lcdPrint03(){
+  if (clLcd){
+      clearLcd();
+      clLcd=0;
+      lcd.setCursor(0,0);
+      lcd.print("Oj, cos nie dziala");
+      lcd.setCursor(0,1);
+      lcd.print("NIE WYBRANO PLIKU!");
+      delay(300);
+    }
+  if(encoder()>0) return 1;
+  return 0;
+}
+
+int lcdPrint04(){
+  if (clLcd){
+      clearLcd();
+      clLcd=0;
+      lcd.setCursor(0,0);
+      lcd.print("Blad podczas");
+      lcd.setCursor(0,1);
+      lcd.print("analizy pliku!");
       delay(300);
     }
   if(encoder()>0) return 1;

@@ -1,5 +1,6 @@
 #include <Wire.h>
 #include <LiquidCrystal.h>
+#include <SPI.h>
 #include <SD.h>
 
 #include "R2_pins.h"
@@ -12,7 +13,7 @@ void setup() {
   pinsSetup();
   mallocListFiles(20);
   listFiles(root);
-  makeFilesCharList();
+  //makeFilesCharList();
 }
 
 
@@ -35,6 +36,7 @@ void loop() {
          clLcd=1;
          switch(currentMainMenu){
           case 0:
+            workCase=5;
           break;
          
           case 1:
@@ -50,7 +52,6 @@ void loop() {
          }
       }
     break;
-    
     case 3:                    //WYPISYWANIE AUTOROW
       if( printMenu(autorzyMenu, &currentSecondMenu, numAutorzyMenu) == 1){
         clLcd=1;
@@ -63,20 +64,40 @@ void loop() {
     break;
     
     case 4:
-      if( printMenu(filesNames, &curNumOfFiles, numOfFiles-1) == 1){
+      if( printMenu(sdFileList, &curNumOfFiles, numOfFiles+1) == 1){
         clLcd=1;
         if(curNumOfFiles > 0){
-          mainFile = sdFileList[curNumOfFiles-1]; 
-          Serial.print(mainFile.name());
+          mainFile = sdFileList[curNumOfFiles]; 
+          Serial.print(mainFile);
         }
         currentMainMenu=0;
         currentSecondMenu=0;
         workCase=2;
       }
     break;
+    case 5:
+      if(mainFile){
+        int val = loadBitmap(mainFile);
+        if(val!=0){
+          if (lcdPrint04() == 1) {
+            workCase=2;
+            clLcd=1;
+          }
+        }
+        else
+          workCase=6;
+      }
+      else{
+        if (lcdPrint03() == 1) {
+          workCase=2;
+          clLcd=1;
+        }
+      }
+    break;
+    case 6:
+    
+    break;
   }
-
-
 
 }
 
