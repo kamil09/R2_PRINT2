@@ -43,7 +43,7 @@ void listFiles(File dir) {
        }
        sdFileList[numOfFiles+1] = (char*)malloc(sizeof(char)*32);
        strcpy(sdFileList[numOfFiles+1],path);
-       Serial.print(sdFileList[numOfFiles+1]);
+       //Serial.print(sdFileList[numOfFiles+1]);
        numOfFiles++;
      }
      entry.close();

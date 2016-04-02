@@ -1,10 +1,14 @@
 #pragma once
 
 extern int clLcd=0;
-extern const int numMainMenu=4;
+extern const int numMainMenu=5;
 extern const int numAutorzyMenu=7;
-extern char *mainMenu[4]={"START","OPCJE","WYBIERZ PLIK","AUTORZY"};
+extern char *mainMenu[5]={"START","OPCJE","WYBIERZ PLIK","AUTORZY","TUTORIAL"};
 extern char *autorzyMenu[7]={"<< POWROT <<","Kamil Piotrowski","Michal Lewinski","Pawal Kaczmarek","Rafal Wilinski","Szymon Melewski","Tymoteusz Kupcewicz"};
+extern char *tutorialMenu[20]={"<< POWROT <<","To","jest","tutorial,","bardzo","zle","sie","go","czyta","1","2","3","4","5","6","7","8","9","10"};
+extern char *opcjeMenu[6]={"<< POWROT <<","Szerokosc","Wysokosc","Predkosc X","Predkosc Y","Grubosc"};
+extern const int numOpcjeMenu=6;
+extern const int numTutorial=20;
 extern int currentMainMenu=0;
 extern int currentSecondMenu=0;
 extern int eLast = 0;
@@ -91,6 +95,20 @@ int lcdPrint04(){
   return 0;
 }
 
+int lcdPrint05(){
+  if (clLcd){
+      clearLcd();
+      clLcd=0;
+      lcd.setCursor(0,0);
+      lcd.print("Nieznany format!");
+      lcd.setCursor(0,1);
+      lcd.print("Wym.: .PBM (P4)");
+      delay(300);
+    }
+  if(encoder()>0) return 1;
+  return 0;
+}
+
 int printMenu(char *tab[], int *curr, int maxM){
    if(clLcd){
     clearLcd();
@@ -118,6 +136,10 @@ int printMenu(char *tab[], int *curr, int maxM){
      break;
   }
   return 0;
+}
+
+int setWidth(){
+  
 }
 
 
