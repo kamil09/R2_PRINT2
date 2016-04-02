@@ -8,7 +8,7 @@ unsigned long time;
 unsigned long time2;
 int picWidth=0;
 int picHeight=0;
-int tablicaRys[10];
+int *tablicaRys;
 File loadedFile;
 
 void mallocListFiles(int num){
@@ -63,37 +63,36 @@ int ascii(){
 
 void zerowanie(int from,int to){
   int i;
-  for(i=from;i<=to;i++){
+  for(i=from;i<to;i++){
     tablicaRys[i]=0;
   }
 }
 //Do testow
 void wypisywanie(int w){
   int i;
-  Serial.println("wypisywanie tablicy");
+  //Serial.println("wypisywanie tablicy\n");
   for(i=0;i<=w;i++){
     Serial.print(tablicaRys[i]);
     Serial.print(" ");
   }
-  
+  Serial.println("");
 }
 
-void linia(){
+int linia(){
   int c=loadedFile.read();
   int k=0;
   int w=0;
-  //int b=0;
+  int b=8;
   int i;
-  //tablicaRys=(int*)malloc(sizeof(int)*10);  
-  zerowanie(0,9); 
+  tablicaRys=(int*)malloc(sizeof(int)*b);  
+  zerowanie(0,b); 
   while(c!=-1){
-    for(i=8;i>=0;i--){
-       k++; 
-       if(k==picWidth){
-          k=0;
-          break;
-       }
-      if(c & (1<<i)==1){
+    for(i=7;i>=0;i--){
+      if(w==(b-1)){
+        b=b+8;
+        tablicaRys=(int*)realloc(tablicaRys,sizeof(int)*b);
+        zerowanie(w+1,b);      }
+      if((c & (1<<i))!=0){
          if(tablicaRys[w]>=0){
            tablicaRys[w]++;
          }
@@ -111,10 +110,15 @@ void linia(){
            tablicaRys[w]--;
          }
       }
+      k++; 
+       if(k==picWidth){
+          //k=0;
+          return w;
+       }
     }
     c=loadedFile.read();
  }
- wypisywanie(w);
+  return w;
 }
 
 int loadBitmap(char *file){
@@ -160,14 +164,21 @@ int loadBitmap(char *file){
    // }
     //Serial.print("\n");
   //}
-  linia(); 
+  int t=0;
+  int i;
+  for(i=0;i<picHeight;i++){
+   t=linia();
+   wypisywanie(t);
+   free(tablicaRys);
+  }
+  
+ 
+ 
   time2 = millis();
   Serial.print("Koniec!");  
   Serial.println(time);
   Serial.println(time2);
   lcd.setCursor(0,0);
-  lcd.print("Analiza zakonczona");
- 
- 
+  lcd.print("Analiza zakonczona"); 
  return 0; 
 }
