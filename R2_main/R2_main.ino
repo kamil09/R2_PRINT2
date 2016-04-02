@@ -2,11 +2,13 @@
 #include <LiquidCrystal.h>
 #include <SPI.h>
 #include <SD.h>
+#include <Servo.h>
 
 #include "R2_pins.h"
 #include "R2_menu.h"
 #include "R2_settings.h"
 #include "R2_sd.h"
+#include "R2_motors.h"
 
 int workCase=0;
 
@@ -19,6 +21,7 @@ void setup() {
 
 
 void loop() {
+  
   switch(workCase){
   case 0:                      //WIADOMOŚĆ STARTOWA
     if (lcdPrint01() == 1) workCase=1;
@@ -118,7 +121,11 @@ void loop() {
       }
     break;
     case 6:
-    
+      calibrate();
+      
+      
+       workCase=2;
+       clLcd=1;
     break;
     
     case 91:
@@ -160,7 +167,6 @@ void loop() {
       }
     break;
   }
-
 }
 
 
