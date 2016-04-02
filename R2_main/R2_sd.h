@@ -20,8 +20,8 @@ void listFiles(File dir) {
      Serial.print(entry.name());
      
      if (entry.isDirectory()) {
-       Serial.println("/");
-       listFiles(entry);
+       //Serial.println("/");
+       //listFiles(entry);
      } else {
        Serial.print("\t\t");
        Serial.println(entry.size(), DEC);
@@ -40,7 +40,7 @@ void listFiles(File dir) {
        }
        sdFileList[numOfFiles+1] = (char*)malloc(sizeof(char)*32);
        strcpy(sdFileList[numOfFiles+1],path);
-       Serial.print(sdFileList[numOfFiles+1]);
+       //Serial.print(sdFileList[numOfFiles+1]);
        numOfFiles++;
      }
      entry.close();
