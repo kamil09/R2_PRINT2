@@ -6,6 +6,10 @@ int maxnumFiles=0;
 int curNumOfFiles=0;
 unsigned long time;
 unsigned long time2;
+int picWidth=0;
+int picHeight=0;
+int tablicaRys[10];
+File loadedFile;
 
 void mallocListFiles(int num){
  maxnumFiles=num;
@@ -18,10 +22,9 @@ void listFiles(File dir) {
      File entry =  dir.openNextFile();
      if (! entry) break;
      Serial.print(entry.name());
-     
      if (entry.isDirectory()) {
-       Serial.println("/");
-       listFiles(entry);
+       //Serial.println("/");
+       //listFiles(entry);
      } else {
        Serial.print("\t\t");
        Serial.println(entry.size(), DEC);
@@ -47,10 +50,76 @@ void listFiles(File dir) {
    }
 }
 
+int ascii(){
+  int c=loadedFile.read();
+  int t=0;
+  while(c!=-1 && c!=' ' && c!='\n'){
+    t=t*10;
+    t=t+(c-'0');
+    c=loadedFile.read();
+  }
+  return t;
+}
+
+void zerowanie(int from,int to){
+  int i;
+  for(i=from;i<=to;i++){
+    tablicaRys[i]=0;
+  }
+}
+//Do testow
+void wypisywanie(int w){
+  int i;
+  Serial.println("wypisywanie tablicy");
+  for(i=0;i<=w;i++){
+    Serial.print(tablicaRys[i]);
+    Serial.print(" ");
+  }
+  
+}
+
+void linia(){
+  int c=loadedFile.read();
+  int k=0;
+  int w=0;
+  //int b=0;
+  int i;
+  //tablicaRys=(int*)malloc(sizeof(int)*10);  
+  zerowanie(0,9); 
+  while(c!=-1){
+    for(i=8;i>=0;i--){
+       k++; 
+       if(k==picWidth){
+          k=0;
+          break;
+       }
+      if(c & (1<<i)==1){
+         if(tablicaRys[w]>=0){
+           tablicaRys[w]++;
+         }
+         else{
+           w++;
+           tablicaRys[w]++;
+         }
+      }
+      else{
+         if(tablicaRys[w]<=0){
+           tablicaRys[w]--;
+         }
+         else{
+           w++;
+           tablicaRys[w]--;
+         }
+      }
+    }
+    c=loadedFile.read();
+ }
+ wypisywanie(w);
+}
+
 int loadBitmap(char *file){
  Serial.print(file);
  Serial.print("\n");
- File loadedFile;
  loadedFile=SD.open(file);
  
  if(!loadedFile) return 1;
@@ -62,16 +131,38 @@ int loadBitmap(char *file){
  lcd.print(file);
  time = millis();
   int c=0;
-  while(c!=-1){
-    c=loadedFile.read();
-    if(c=='\n') Serial.println("NOWA LINIA!");
-    else if(c==' ') Serial.println("SPACJA");
-    else Serial.println(c); 
-    //Serial.print("\n");
+  if((c=loadedFile.read())!=80){
+    Serial.println("zly typ pliku");
+    return 2;
   }
-  time2 = millis();
-  Serial.print("Koniec!");
+  if((c=loadedFile.read())!=52){
+    Serial.println("zly typ pliku");
+    return 2;
+  }
+  c=loadedFile.read();
+  do{
+    c=loadedFile.read();
+  }while(c!=-1 && c!='\n');
+  picWidth=ascii();
+  Serial.print("Szerokosc: ");
+  Serial.println(picWidth);
+  picHeight=ascii();
+  Serial.print("Dlugosc: ");
+  Serial.println(picHeight);
   
+  //while(c!=-1){
+    //c=loadedFile.read();
+    //if(c=='\n') Serial.println("NOWA LINIA!");
+    //else if(c==' ') Serial.println("SPACJA");
+    //else {
+     // Serial.print(" ");
+      //Serial.print(c); 
+   // }
+    //Serial.print("\n");
+  //}
+  linia(); 
+  time2 = millis();
+  Serial.print("Koniec!");  
   Serial.println(time);
   Serial.println(time2);
   lcd.setCursor(0,0);
