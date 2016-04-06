@@ -1,17 +1,17 @@
 #pragma once
 
-extern int clLcd=0;
-extern const int numMainMenu=5;
-extern const int numAutorzyMenu=7;
-extern char *mainMenu[5]={"START","OPCJE","WYBIERZ PLIK","AUTORZY","TUTORIAL"};
-extern char *autorzyMenu[7]={"<< POWROT <<","Kamil Piotrowski","Michal Lewinski","Pawal Kaczmarek","Rafal Wilinski","Szymon Melewski","Tymoteusz Kupcewicz"};
-extern char *tutorialMenu[20]={"<< POWROT <<","To","jest","tutorial,","bardzo","zle","sie","go","czyta","1","2","3","4","5","6","7","8","9","10"};
-extern char *opcjeMenu[6]={"<< POWROT <<","Szerokosc","Wysokosc","Predkosc X","Predkosc Y","Grubosc"};
-extern const int numOpcjeMenu=6;
-extern const int numTutorial=20;
-extern int currentMainMenu=0;
-extern int currentSecondMenu=0;
-extern int eLast = 0;
+int clLcd=0;
+const int numMainMenu=5;
+const int numAutorzyMenu=7;
+char *mainMenu[5]={(char*)"START",(char*)"OPCJE",(char*)"WYBIERZ PLIK",(char*)"AUTORZY",(char*)"TUTORIAL"};
+char *autorzyMenu[7]={(char*)"<< POWROT <<",(char*)"Kamil Piotrowski",(char*)"Michal Lewinski",(char*)"Pawal Kaczmarek",(char*)"Rafal Wilinski",(char*)"Szymon Melewski",(char*)"Tymoteusz Kupcewicz"};
+char *tutorialMenu[20]={(char*)"<< POWROT <<",(char*)"To",(char*)"jest",(char*)"tutorial,",(char*)"bardzo",(char*)"zle",(char*)"sie",(char*)"go",(char*)"czyta",(char*)"1",(char*)"2",(char*)"3",(char*)"4",(char*)"5",(char*)"6",(char*)"7",(char*)"8",(char*)"9",(char*)"10"};
+char *opcjeMenu[6]={(char*)"<< POWROT <<",(char*)"Szerokosc",(char*)"Wysokosc",(char*)"Predkosc X",(char*)"Predkosc Y",(char*)"Grubosc"};
+const int numOpcjeMenu=6;
+const int numTutorial=20;
+int currentMainMenu=0;
+int currentSecondMenu=0;
+int eLast = 0;
 
 
 
@@ -118,7 +118,7 @@ int printMenu(char *tab[], int *curr, int maxM){
     lcd.setCursor(0,1);
     lcd.print(tab[(*curr+1)%maxM]);
     clLcd=0;
-    delay(500);
+    delay(200);
   }
   int e = encoder();
   switch(e){

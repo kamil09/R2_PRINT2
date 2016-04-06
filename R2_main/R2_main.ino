@@ -9,6 +9,7 @@
 #include "R2_settings.h"
 #include "R2_sd.h"
 #include "R2_motors.h"
+#include "R2_print.h"
 
 int workCase=0;
 
@@ -121,11 +122,11 @@ void loop() {
       }
     break;
     case 6:
-      calibrate();
+      //calibrate();
+      printImage();
       
-      
-       workCase=2;
-       clLcd=1;
+      workCase=2;
+      clLcd=1;
     break;
     
     case 91:
@@ -139,27 +140,27 @@ void loop() {
              workCase=2;
            break;
            case 1:
-             setSettings("Szerokosc [mm]",&width,minW,maxW,0.5);
+             setSettings((char*)"Szerokosc [mm]",&width,minW,maxW,0.5);
              while(!digitalRead(eClick));
              clLcd=1;
            break;
            case 2:
-             setSettings("Wysokosc [mm]",&height,minH,maxH,0.5);
+             setSettings((char*)"Wysokosc [mm]",&height,minH,maxH,0.5);
              while(!digitalRead(eClick));
              clLcd=1;
            break;
            case 3:
-             setSettings("Predkosc X[mm/s]",&speedX,minSX,maxSX,0.5);
+             setSettings((char*)"Predkosc X[mm/s]",&speedX,minSX,maxSX,0.5);
              while(!digitalRead(eClick));
              clLcd=1;
            break;
            case 4:
-             setSettings("Predkosc YX[mm/s]",&speedY,minSY,maxSY,0.5);
+             setSettings((char*)"Predkosc YX[mm/s]",&speedY,minSY,maxSY,0.5);
              while(!digitalRead(eClick));
              clLcd=1;
            break;
            case 5:
-             setSettings("Grubosc [mm]",&thickness,minT,maxT,0.1);
+             setSettings((char*)"Grubosc [mm]",&thickness,minT,maxT,0.1);
              while(!digitalRead(eClick));
              clLcd=1;
            break;

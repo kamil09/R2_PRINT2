@@ -10,11 +10,13 @@ int picWidth=0;
 int picHeight=0;
 int *tablicaRys;
 File loadedFile;
+float loadedFileSize=0;
+float loadedBytes=0;
 
 void mallocListFiles(int num){
  maxnumFiles=num;
  sdFileList=(char**)malloc(sizeof(char*)*num);
- sdFileList[0]="<< POWROT <<";
+ sdFileList[0]=(char*)"<< POWROT <<";
 }
 
 void listFiles(File dir) { 
@@ -80,6 +82,7 @@ void wypisywanie(int w){
 
 int linia(){
   int c=loadedFile.read();
+  loadedBytes++;
   int k=0;
   int w=0;
   int b=8;
@@ -117,16 +120,19 @@ int linia(){
        }
     }
     c=loadedFile.read();
+    loadedBytes++;
  }
   return w;
 }
 
 int loadBitmap(char *file){
- Serial.print(file);
+ loadedBytes=0;
+  Serial.print(file);
  Serial.print("\n");
  loadedFile=SD.open(file);
  
  if(!loadedFile) return 1;
+ loadedFileSize = loadedFile.size();
  clearLcd();
  clLcd=0;
  lcd.setCursor(0,0);
@@ -143,9 +149,11 @@ int loadBitmap(char *file){
     Serial.println("zly typ pliku");
     return 2;
   }
+  loadedBytes+=2;
   c=loadedFile.read();
   do{
     c=loadedFile.read();
+    loadedBytes++;
   }while(c!=-1 && c!='\n');
   picWidth=ascii();
   Serial.print("Szerokosc: ");
@@ -164,15 +172,6 @@ int loadBitmap(char *file){
    // }
     //Serial.print("\n");
   //}
-  int t=0;
-  int i;
-  for(i=0;i<picHeight;i++){
-   t=linia();
-   wypisywanie(t);
-   free(tablicaRys);
-  }
-  
- 
  
   time2 = millis();
   Serial.print("Koniec!");  
