@@ -1,4 +1,16 @@
-  #pragma once
+#ifndef MAIN_LIB
+	#define MAIN_LIB
+	#include <Arduino.h>
+	#include <Wire.h>
+	#include <LiquidCrystal.h>
+	#include <SPI.h>
+	#include <SD.h>
+	#include <Servo.h>
+#endif
+#ifndef R2_PINS
+	#define R2_PINS
+	#include "R2_pins.h"
+#endif
 
 int clLcd=0;
 const int numMainMenu=5;
@@ -139,5 +151,5 @@ int printMenu(char *tab[], int *curr, int maxM){
 }
 
 int setWidth(){
-
+  return 1;
 }

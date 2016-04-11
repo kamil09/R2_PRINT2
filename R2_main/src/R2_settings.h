@@ -1,3 +1,21 @@
+#ifndef MAIN_LIB
+	#define MAIN_LIB
+	#include <Arduino.h>
+	#include <Wire.h>
+	#include <LiquidCrystal.h>
+	#include <SPI.h>
+	#include <SD.h>
+	#include <Servo.h>
+#endif
+#ifndef R2_PINS
+	#define R2_PINS
+	#include "R2_pins.h"
+#endif
+#ifndef R2_MENU
+	#define R2_MENU
+	#include "R2_menu.h"
+#endif
+
 float width=200;    //mm
 float height=290;
 float speedX=50;    //mm per second

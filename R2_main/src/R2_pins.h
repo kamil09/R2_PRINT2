@@ -1,4 +1,12 @@
-#pragma once
+#ifndef MAIN_LIB
+	#define MAIN_LIB
+	#include <Arduino.h>
+	#include <Wire.h>
+	#include <LiquidCrystal.h>
+	#include <SPI.h>
+	#include <SD.h>
+	#include <Servo.h>
+#endif
 
 LiquidCrystal lcd(23, 22, 21, 20, 19, 18);
 const int ePinA = 26;

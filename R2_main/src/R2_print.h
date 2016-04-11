@@ -1,3 +1,33 @@
+#ifndef MAIN_LIB
+	#define MAIN_LIB
+	#include <Arduino.h>
+	#include <Wire.h>
+	#include <LiquidCrystal.h>
+	#include <SPI.h>
+	#include <SD.h>
+	#include <Servo.h>
+#endif
+#ifndef R2_PINS
+	#define R2_PINS
+	#include "R2_pins.h"
+#endif
+#ifndef R2_MENU
+	#define R2_MENU
+	#include "R2_menu.h"
+#endif
+#ifndef R2_SETTINGS
+	#define R2_SETTINGS
+	#include "R2_settings.h"
+#endif
+#ifndef R2_SD
+	#define R2_SD
+	#include "R2_sd.h"
+#endif
+#ifndef R2_MOTOR
+	#define R2_MOTOR
+	#include "R2_motors.h"
+#endif
+
 
 int printImage(){
 	int t=0;
@@ -14,6 +44,7 @@ int printImage(){
 		lcd.print((loadedBytes/loadedFileSize)*100);
 		lcd.print(" %                                 ");
 		t=linia();
+		wypisywanie(t);
 		if(strona==0) {
 			for (k=0; k<=t; k++) {
 				if (tablicaRys[k]==0) {
@@ -54,4 +85,5 @@ int printImage(){
 		strona = 1 - strona;
 		free(tablicaRys);
 	}
+	return 0;
 }

@@ -1,17 +1,37 @@
-#include <Arduino.h>
+#ifndef MAIN_LIB
+	#define MAIN_LIB
+	#include <Arduino.h>
+	#include <Wire.h>
+	#include <LiquidCrystal.h>
+	#include <SPI.h>
+	#include <SD.h>
+	#include <Servo.h>
+#endif
 
-#include <Wire.h>
-#include <LiquidCrystal.h>
-#include <SPI.h>
-#include <SD.h>
-#include <Servo.h>
-
-#include "R2_pins.h"
-#include "R2_menu.h"
-#include "R2_settings.h"
-#include "R2_sd.h"
-#include "R2_motors.h"
-#include "R2_print.h"
+#ifndef R2_PINS
+	#define R2_PINS
+	#include "R2_pins.h"
+#endif
+#ifndef R2_MENU
+	#define R2_MENU
+	#include "R2_menu.h"
+#endif
+#ifndef R2_SETTINGS
+	#define R2_SETTINGS
+	#include "R2_settings.h"
+#endif
+#ifndef R2_SD
+	#define R2_SD
+	#include "R2_sd.h"
+#endif
+#ifndef R2_MOTOR
+	#define R2_MOTOR
+	#include "R2_motors.h"
+#endif
+#ifndef R2_PRINT
+	#define R2_PRINT
+	#include "R2_print.h"
+#endif
 
 int workCase=0;
 
@@ -171,4 +191,3 @@ void loop() {
 		break;
 	}
 }
-  
