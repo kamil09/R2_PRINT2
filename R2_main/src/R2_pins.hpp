@@ -8,16 +8,16 @@
 #include <Servo.h>
 
 extern LiquidCrystal lcd;
-extern int ePinA;
-extern int ePinB;
-extern int eClick;
-extern int servPin;
-extern int motorXDir;
-extern int motorXStep;
-extern int motorYDir;
-extern int motorYStep;
-extern int endX;
-extern int endY;
+extern const int ePinA;
+extern const int ePinB;
+extern const int eClick;
+extern const int servPin;
+extern const int motorXDir;
+extern const int motorXStep;
+extern const int motorYDir;
+extern const int motorYStep;
+extern const int endX;
+extern const int endY;
 
 static File root;
 static Servo servo;

@@ -1,16 +1,16 @@
 #include "R2_pins.hpp"
 
 LiquidCrystal lcd(23, 22, 21, 20, 19, 18);
-int ePinA = 26;
-int ePinB = 25;
-int eClick = 24;
-int servPin = 15;
-int motorXDir = 30;
-int motorXStep = 31;
-int motorYDir = 28;
-int motorYStep = 29;
-int endX = 0;
-int endY = 1;
+const int ePinA = 26;
+const int ePinB = 25;
+const int eClick = 24;
+const int servPin = 15;
+const int motorXDir = 30;
+const int motorXStep = 31;
+const int motorYDir = 28;
+const int motorYStep = 29;
+const int endX = 0;
+const int endY = 1;
 
 void pinsSetup(){
 	pinMode (ePinA,INPUT); //Tryby pinów
