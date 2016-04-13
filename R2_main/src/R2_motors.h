@@ -1,3 +1,6 @@
+
+#include "R2_pins.hpp"
+
 #ifndef MAIN_LIB
 	#define MAIN_LIB
 	#include <Arduino.h>
@@ -7,10 +10,7 @@
 	#include <SD.h>
 	#include <Servo.h>
 #endif
-#ifndef R2_PINS
-	#define R2_PINS
-	#include "R2_pins.h"
-#endif
+
 #ifndef R2_MENU
 	#define R2_MENU
 	#include "R2_menu.h"
@@ -32,7 +32,7 @@ float nowX=0;
 float nowY=0;
 //Liczba krokow silnika na 1mm
 const int stepsXPerMm = 200;
-const int stepsYPerMm = 200;
+const int stepsYPerMm = 6266;
 float lineWidth = 1;
 float lineHeight = 1;
 int pozycjaY = 0; // 0 - dlugopis podniesiony 1 - dlugopis opuszczony

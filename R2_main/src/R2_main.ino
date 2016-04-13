@@ -8,10 +8,8 @@
 	#include <Servo.h>
 #endif
 
-#ifndef R2_PINS
-	#define R2_PINS
-	#include "R2_pins.h"
-#endif
+#include "R2_pins.hpp"
+
 #ifndef R2_MENU
 	#define R2_MENU
 	#include "R2_menu.h"

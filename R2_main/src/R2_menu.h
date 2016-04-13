@@ -1,16 +1,13 @@
-#ifndef MAIN_LIB
-	#define MAIN_LIB
+
 	#include <Arduino.h>
 	#include <Wire.h>
 	#include <LiquidCrystal.h>
 	#include <SPI.h>
 	#include <SD.h>
 	#include <Servo.h>
-#endif
-#ifndef R2_PINS
-	#define R2_PINS
-	#include "R2_pins.h"
-#endif
+
+
+#include "R2_pins.hpp"
 
 int clLcd=0;
 const int numMainMenu=5;
