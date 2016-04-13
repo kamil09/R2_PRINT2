@@ -26,11 +26,13 @@
 
 int delayX=100;
 int delayY=100;
+int servoDownSignal=500;
+int servoUpSignal=1500;
 float nowX=0;
 float nowY=0;
 //Liczba krokow silnika na 1mm
-const int stepsXPerMm = 1;
-const int stepsYPerMm = 1;
+const int stepsXPerMm = 200;
+const int stepsYPerMm = 200;
 float lineWidth = 1;
 float lineHeight = 1;
 int pozycjaY = 0; // 0 - dlugopis podniesiony 1 - dlugopis opuszczony
@@ -40,19 +42,23 @@ void servoDown(){
 	if(pozycjaY==1) {
 		return;
 	}
-	servo.writeMicroseconds(500);
+	servo.writeMicroseconds(servoDownSignal);
 	pozycjaY=1;
 }
 void servoUp(){
 	if(pozycjaY==0) {
 		return;
 	}
-	servo.writeMicroseconds(1500);
+	servo.writeMicroseconds(servoUpSignal);
 	pozycjaY=0;
 }
 
 void calibrate(){
 	int t=0;
+
+	digitalWrite(motorXDir,LOW);
+	digitalWrite(motorYDir,LOW);
+
 	Serial.println("Kalibruje");
 	Serial.print("x: ");
 	while(1) {
@@ -86,8 +92,8 @@ void calibrate(){
 }
 
 void pixelMm(){
-	lineWidth=width/picWidth; //ile milimetrow ma szerokosc 1 piksel
-	lineHeight=height/picHeight;
+	lineWidth=(float)width/picWidth; //ile milimetrow ma szerokosc 1 piksel
+	lineHeight=(float)height/picHeight;
 }
 
 void moveMotorX(int kroki){
@@ -110,10 +116,26 @@ void moveMotorX(int kroki){
 
 void moveMotorY(int kroki){
 	int i;
+	digitalWrite(motorYDir,HIGH);
 	for(i=0; i<kroki; i++) {
 		digitalWrite(motorYStep,HIGH);
 		delayMicroseconds(delayY);
 		digitalWrite(motorYStep,LOW);
 		delayMicroseconds(delayY);
 	}
+}
+
+int setDelaySpeed(){
+	float krokowPerSec=0;
+	krokowPerSec=speedX*stepsXPerMm*2;
+	krokowPerSec=1000000/krokowPerSec;
+	delayX=(int)krokowPerSec;
+	krokowPerSec=speedY*stepsYPerMm*2;
+	krokowPerSec=1000000/krokowPerSec;
+	delayY=(int)krokowPerSec;
+	Serial.print("DX: ");
+	Serial.println(delayX);
+	Serial.print("DY: ");
+	Serial.println(delayY);
+	return 0;
 }

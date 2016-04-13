@@ -39,7 +39,6 @@ void setup() {
 	pinsSetup();
 	mallocListFiles(20);
 	listFiles(root);
-	//makeFilesCharList();
 }
 
 
@@ -144,9 +143,9 @@ void loop() {
 		}
 		break;
 	case 6:
-		//calibrate();
+		calibrate();
+		setDelaySpeed();
 		printImage();
-
 		workCase=2;
 		clLcd=1;
 		break;

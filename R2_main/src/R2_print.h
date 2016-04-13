@@ -60,7 +60,7 @@ int printImage(){
 				//PRZELICZ na mm
 				//PRZESUN SILNIK NA OSI X
 				mm=abs(tablicaRys[k])*lineWidth;
-				moveMotorX(mm/stepsXPerMm);
+				moveMotorX((int)(mm*stepsXPerMm));
 			}
 		}else{
 			for (k=t; k>=0; k--) {
@@ -77,13 +77,16 @@ int printImage(){
 				//PRZELICZ na mm
 				//PRZESUN SILNIK NA OSI X
 				mm=abs(tablicaRys[k])*lineWidth;
-				moveMotorX(mm/stepsXPerMm);
+				moveMotorX((int)(mm*stepsXPerMm));
 			}
 		}
 		//PRZESUN SILNIKI NA OSI Y
-		moveMotorY(lineHeight/stepsYPerMm);
+		moveMotorY((int)(lineHeight*stepsYPerMm));
 		strona = 1 - strona;
 		free(tablicaRys);
 	}
+	lcd.setCursor(0,0);
+	lcd.print("KONIEC!               ");
+	calibrate();
 	return 0;
 }
