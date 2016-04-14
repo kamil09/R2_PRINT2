@@ -1,19 +1,14 @@
-#ifndef MAIN_LIB
-	#define MAIN_LIB
-	#include <Arduino.h>
-	#include <Wire.h>
-	#include <LiquidCrystal.h>
-	#include <SPI.h>
-	#include <SD.h>
-	#include <Servo.h>
-#endif
+#include <Arduino.h>
+#include <Wire.h>
+#include <LiquidCrystal.h>
+#include <SPI.h>
+#include <SD.h>
+#include <Servo.h>
 
 #include "R2_pins.hpp"
+#include "R2_menu.hpp"
 
-#ifndef R2_MENU
-	#define R2_MENU
-	#include "R2_menu.h"
-#endif
+
 #ifndef R2_SETTINGS
 	#define R2_SETTINGS
 	#include "R2_settings.h"

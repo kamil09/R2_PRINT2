@@ -1,13 +1,4 @@
-
-	#include <Arduino.h>
-	#include <Wire.h>
-	#include <LiquidCrystal.h>
-	#include <SPI.h>
-	#include <SD.h>
-	#include <Servo.h>
-
-
-#include "R2_pins.hpp"
+#include "R2_menu.hpp"
 
 int clLcd=0;
 const int numMainMenu=5;
