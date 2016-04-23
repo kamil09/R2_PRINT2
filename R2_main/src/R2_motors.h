@@ -17,14 +17,14 @@
 #endif
 
 int delayX=100;
-int delayY=100;
-int servoDownSignal=500;
+int delayY=1600;
+int servoDownSignal=1300;
 int servoUpSignal=1500;
 float nowX=0;
 float nowY=0;
 //Liczba krokow silnika na 1mm
 const int stepsXPerMm = 200;
-const int stepsYPerMm = 6266;
+const int stepsYPerMm = 200;
 float lineWidth = 1;
 float lineHeight = 1;
 int pozycjaY = 0; // 0 - dlugopis podniesiony 1 - dlugopis opuszczony
@@ -48,8 +48,8 @@ void servoUp(){
 void calibrate(){
 	int t=0;
 
-	digitalWrite(motorXDir,LOW);
-	digitalWrite(motorYDir,LOW);
+	digitalWrite(motorXDir,HIGH);
+	digitalWrite(motorYDir,HIGH);
 
 	Serial.println("Kalibruje");
 	Serial.print("x: ");
@@ -108,7 +108,7 @@ void moveMotorX(int kroki){
 
 void moveMotorY(int kroki){
 	int i;
-	digitalWrite(motorYDir,HIGH);
+	digitalWrite(motorYDir,LOW);
 	for(i=0; i<kroki; i++) {
 		digitalWrite(motorYStep,HIGH);
 		delayMicroseconds(delayY);

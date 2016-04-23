@@ -12,6 +12,9 @@ const int motorYStep = 29;
 const int endX = 0;
 const int endY = 1;
 
+File root;
+Servo servo;
+
 void pinsSetup(){
 	pinMode (ePinA,INPUT); //Tryby pinów
 	pinMode (ePinB,INPUT);

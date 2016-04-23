@@ -19,8 +19,8 @@ extern const int motorYStep;
 extern const int endX;
 extern const int endY;
 
-static File root;
-static Servo servo;
+extern File root;
+extern Servo servo;
 
 void pinsSetup();
 
