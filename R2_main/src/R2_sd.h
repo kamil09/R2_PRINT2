@@ -85,7 +85,14 @@ void zerowanie(int from,int to){
 //Do testow
 void wypisywanie(int w){
 	int i;
+	int temp=0;
 	//Serial.println("wypisywanie tablicy\n");
+	for(i=0;i<=w;i++){
+		temp = temp + fabs(tablicaRys[i]);
+	}
+	Serial.print(temp);
+	Serial.print(" : ");
+
 	for(i=0; i<=w; i++) {
 		Serial.print(tablicaRys[i]);
 		Serial.print(" ");

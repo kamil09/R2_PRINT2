@@ -17,14 +17,14 @@
 #endif
 
 int delayX=100;
-int delayY=1600;
-int servoDownSignal=1300;
+int delayY=800;
+int servoDownSignal=1400;
 int servoUpSignal=1500;
 float nowX=0;
 float nowY=0;
 //Liczba krokow silnika na 1mm
-const int stepsXPerMm = 200;
-const int stepsYPerMm = 200;
+const int stepsXPerMm = 167;
+const int stepsYPerMm = 300;
 float lineWidth = 1;
 float lineHeight = 1;
 int pozycjaY = 0; // 0 - dlugopis podniesiony 1 - dlugopis opuszczony
@@ -35,6 +35,7 @@ void servoDown(){
 		return;
 	}
 	servo.writeMicroseconds(servoDownSignal);
+	delay(100);
 	pozycjaY=1;
 }
 void servoUp(){
@@ -42,6 +43,7 @@ void servoUp(){
 		return;
 	}
 	servo.writeMicroseconds(servoUpSignal);
+	delay(100);
 	pozycjaY=0;
 }
 
@@ -119,12 +121,14 @@ void moveMotorY(int kroki){
 
 int setDelaySpeed(){
 	float krokowPerSec=0;
-	krokowPerSec=speedX*stepsXPerMm*2;
-	krokowPerSec=1000000/krokowPerSec;
+	krokowPerSec=speedX*stepsXPerMm;
+	krokowPerSec=1000000/krokowPerSec/2;
 	delayX=(int)krokowPerSec;
-	krokowPerSec=speedY*stepsYPerMm*2;
-	krokowPerSec=1000000/krokowPerSec;
+
+	krokowPerSec=speedY*stepsYPerMm;
+	krokowPerSec=1000000/krokowPerSec/2;
 	delayY=(int)krokowPerSec;
+
 	Serial.print("DX: ");
 	Serial.println(delayX);
 	Serial.print("DY: ");

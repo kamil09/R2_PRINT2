@@ -7,23 +7,23 @@
 #include "R2_menu.hpp"
 
 
-float width=200;    //mm
-float height=290;
+float width=100;    //mm
+float height=150;
 float speedX=50;    //mm per second
-float speedY=10;
+float speedY=2;
 float thickness=0.5;
 
 float minW = 50;
-int maxW = 200;
+int maxW = 180;
 
 float minH = 50;
-int maxH = 290;
+int maxH = 270;
 
 float minSX = 1;
 int minSY = 1;
 
 float maxSX = 60;
-int maxSY = 20;
+int maxSY = 3;
 
 float minT = 0.2;
 int maxT = 5;
