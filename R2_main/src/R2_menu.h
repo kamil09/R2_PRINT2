@@ -7,12 +7,12 @@
 #include <SPI.h>
 #include <SD.h>
 #include <Servo.h>
-#include "R2_pins.hpp"
+#include "R2_pins.h"
 
 extern int clLcd;
 extern const int numMainMenu;
 extern const int numAutorzyMenu;
-extern char *mainMenu[5];
+extern char *mainMenu[6];
 extern char *autorzyMenu[7];
 extern char *tutorialMenu[20];
 extern char *opcjeMenu[6];

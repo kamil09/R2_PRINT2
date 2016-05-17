@@ -1,4 +1,4 @@
-#include "R2_pins.hpp"
+#include "R2_pins.h"
 
 LiquidCrystal lcd(23, 22, 21, 20, 19, 18);
 const int ePinA = 26;

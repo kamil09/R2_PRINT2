@@ -1,9 +1,9 @@
-#include "R2_menu.hpp"
+#include "R2_menu.h"
 
 int clLcd=0;
-const int numMainMenu=5;
+const int numMainMenu=6;
 const int numAutorzyMenu=7;
-char *mainMenu[5]={(char*)"START",(char*)"OPCJE",(char*)"WYBIERZ PLIK",(char*)"AUTORZY",(char*)"TUTORIAL"};
+char *mainMenu[6]={(char*)"START",(char*)"OPCJE",(char*)"WYBIERZ PLIK",(char*)"AUTORZY",(char*)"TUTORIAL",(char*)"ZMIEN PISADLO"};
 char *autorzyMenu[7]={(char*)"<< POWROT <<",(char*)"Kamil Piotrowski",(char*)"Michal Lewinski",(char*)"Pawal Kaczmarek",(char*)"Rafal Wilinski",(char*)"Szymon Melewski",(char*)"Tymoteusz Kupcewicz"};
 char *tutorialMenu[20]={(char*)"<< POWROT <<",  (char*)"To", (char*)"jest", (char*)"tutorial,", (char*)"bardzo", (char*)"zle", (char*)"sie", (char*)"go", (char*)"czyta", (char*)"1", (char*)"2", (char*)"3", (char*)"4", (char*)"5", (char*)"6", (char*)"7", (char*)"8", (char*)"9", (char*)"10"};
 char *opcjeMenu[6]={(char*)"<< POWROT <<",(char*)"Szerokosc",(char*)"Wysokosc",(char*)"Predkosc X",(char*)"Predkosc Y",(char*)"Grubosc"};

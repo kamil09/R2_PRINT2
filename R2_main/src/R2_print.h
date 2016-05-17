@@ -4,7 +4,7 @@
 #include <SPI.h>
 #include <SD.h>
 #include <Servo.h>
-#include "R2_menu.hpp"
+#include "R2_menu.h"
 
 #ifndef R2_SETTINGS
 	#define R2_SETTINGS
@@ -29,6 +29,7 @@ int printImage(){
 	clearLcd();
 	lcd.setCursor(0,0);
 	lcd.print("Trwa drukowanie");
+	moveMotorX(stepsYPerMm*5);
 
 	for(i=0; i<picHeight; i++) {
 		lcd.setCursor(0,1);
@@ -78,6 +79,7 @@ int printImage(){
 	}
 	lcd.setCursor(0,0);
 	lcd.print("KONIEC!               ");
+	servoUp();
 	calibrate();
 	return 0;
 }

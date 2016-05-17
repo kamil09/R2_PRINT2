@@ -5,18 +5,11 @@
 #include <SD.h>
 #include <Servo.h>
 
-#include "R2_pins.hpp"
-#include "R2_menu.hpp"
+#include "R2_pins.h"
+#include "R2_menu.h"
+#include "R2_sd.h"
+#include "R2_settings.h"
 
-
-#ifndef R2_SETTINGS
-	#define R2_SETTINGS
-	#include "R2_settings.h"
-#endif
-#ifndef R2_SD
-	#define R2_SD
-	#include "R2_sd.h"
-#endif
 #ifndef R2_MOTOR
 	#define R2_MOTOR
 	#include "R2_motors.h"
@@ -73,6 +66,9 @@ void loop() {
 			case 4:
 				workCase=22;
 				break;
+			case 5:
+				workCase=222;
+				break;
 
 			}
 		}
@@ -86,6 +82,15 @@ void loop() {
 				workCase=2;
 			}
 		}
+		break;
+	case 222:
+		clearLcd();
+		servoDown();
+		lcd.setCursor(0,0);
+		lcd.println("Wymien dlugopis & OK");
+		while(encoder() != 3 );
+		workCase=2;
+		servoUp();
 		break;
 	case 3:                //WYPISYWANIE AUTOROW
 		if( printMenu(autorzyMenu, &currentSecondMenu, numAutorzyMenu) == 1) {

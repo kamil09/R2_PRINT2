@@ -1,11 +1,11 @@
-#include "R2_pins.hpp"
+#include "R2_pins.h"
 #include <Arduino.h>
 #include <Wire.h>
 #include <LiquidCrystal.h>
 #include <SPI.h>
 #include <SD.h>
 #include <Servo.h>
-#include "R2_menu.hpp"
+#include "R2_menu.h"
 
 #ifndef R2_SETTINGS
 	#define R2_SETTINGS
@@ -23,8 +23,8 @@ int servoUpSignal=1500;
 float nowX=0;
 float nowY=0;
 //Liczba krokow silnika na 1mm
-const int stepsXPerMm = 167;
-const int stepsYPerMm = 300;
+const int stepsXPerMm = 163;
+const int stepsYPerMm = 267;
 float lineWidth = 1;
 float lineHeight = 1;
 int pozycjaY = 0; // 0 - dlugopis podniesiony 1 - dlugopis opuszczony
