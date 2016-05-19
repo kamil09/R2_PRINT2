@@ -17,8 +17,8 @@ D5 EQU P2.0
 D6 EQU P2.3
 D7 EQU P2.2
 
-;E - "Enable". Ten pin wskazuje wyświetlaczowi, że zaczynamy wysyłac dane.
-;Żeby wysłac dane należy ustawić E wartość 0 i ustawić odpowiednie dane (D4-D7).
+;E - "Enable". Ten pin wskazuje wyświetlaczowi, że zaczynamy wysyłać dane.
+;Żeby wysłać dane należy ustawić E wartość 0 i ustawić odpowiednie dane (D4-D7).
 ;Następnie zmieniamy wartość E na 1 oraz odczekujemy odpowiednią ilość czasu
 ;Czas oczekiwania różni się w zależności od modelu LCD.
 ;Na koniec musimy ponownie wysłać E wartość 0, wskazującym tym samym zakończenie instrukcji.
@@ -35,16 +35,6 @@ D7 EQU P2.2
 ;Z tego powodu zwykle RW ma wartość 0 (stan niski)
 
 ;D4-D7 piny służące do wysyłania odpowiednich danyc do LCD.
-
-;DLA SYMULACJi:
-;E EQU P1.2
-;RS EQU P1.3
-;RW EQU P2.4	;ten port nie jest wyprowadzony w symulatorze, ale nie jest potrzebny
-
-;D4 EQU P1.4
-;D5 EQU P1.5
-;D6 EQU P1.6
-;D7 EQU P1.7
 
 ;POCZĄTEK PROGRAMU
 ORG 000H
@@ -229,13 +219,7 @@ START:
 		MOV 34H, #'I'
 		MOV 35H, #'A'
 		MOV 36H, #'L'
-		MOV 37H, #' '
-		MOV 38H, #' '
-		MOV 39H, #' '
-		MOV 3AH, #' '
-		MOV 3BH, #' '
-		MOV 3CH, #' '
-		MOV 3DH, #0	;Adres wskazujący zakończenie wprowdzanego łańcucha znaków
+		MOV 37H, #0
 
 		MOV 40H, #'I'
 		MOV 41H, #'N'
@@ -248,8 +232,6 @@ START:
 		MOV 48H, #'Y'
 		MOV 49H, #'K'
 		MOV 4AH, #'I'
-		MOV 4BH, #' '
-		MOV 4CH, #' '
 		MOV 4DH, #0	;Adres wskazujący zakończenie wprowdzanego łańcucha znaków
 
 	RET
