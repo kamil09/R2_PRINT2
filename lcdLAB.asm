@@ -232,7 +232,7 @@ START:
 		MOV 48H, #'Y'
 		MOV 49H, #'K'
 		MOV 4AH, #'I'
-		MOV 4DH, #0	;Adres wskazujący zakończenie wprowdzanego łańcucha znaków
+		MOV 4BH, #0	;Adres wskazujący zakończenie wprowdzanego łańcucha znaków
 
 	RET
 
